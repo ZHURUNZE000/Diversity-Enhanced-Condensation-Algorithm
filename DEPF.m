@@ -1,26 +1,26 @@
 clc;
 %clear all;
 %close all;
-x = xArr1(1); %‰n?
+x = xArr1(1); %
 R = 1;
 Q = 1;
-tf = 100; %æîçH??
-N = 500;  %—±q˜¢”
+tf = 100; %
+N = 500;  %
 P = 2;
 xhatPart = x;
 for i = 1 : N    
-    xpart(i) = x + sqrt(P) * randn;%‰nó?•˜¸0‹Ï?C•û·?sqrt(P)“I‚z•ª•z
+    xpart(i) = x + sqrt(P) * randn;%
 end
 
 
 Gm = 50;  
 F0 = 0.6;  
 Np = 100;  
-CR = 0.9;  %Œğ³ŠT—¦  
-G= 1; %‰n‰»‘ã”  
-D = 1; %Š‹??“I?”  
-%Gmin = zeros(1,Gm); %Še‘ã“IÅ??  
-%best_x = zeros(Gm,D); %Še‘ã“IÅ?‰ğ  
+CR = 0.9;  % äº¤å‰æ¦‚ç‡ 
+G= 1; %Âåˆå§‹åŒ–ä»£æ•°  
+D = 10; %æ‰€æ±‚é—®é¢˜çš„ç»´æ•°  
+%Gmin = zeros(1,Gm); %
+%best_x = zeros(Gm,D); %
 value = zeros(1,Np);  
 
 
@@ -34,26 +34,26 @@ xhatPartArr = [xhatPart];
 
 for k = 1 : tf    
     %x = 0.5 * x + 25 * x / (1 + x^2) + 8 * cos(1.2*(k-1)) + sqrt(Q) * randn;
-    %k?^??
+    %k?
     x=xArr1(k+1);
-    y = x^2 / 20 + sqrt(R) * randn;  %k????
+    y = x^2 / 20 + sqrt(R) * randn;  %k?
     %y=yArr1(k);
     
  for i = 1 : N
      
      xpartminus(i) = 0.5 * xpart(i) + 25 * xpart(i) / (1 + xpart(i)^2) ...
-         + 8 * cos(1.2*(k-1)) + sqrt(Q) * randn;%Ñ??“¾N˜¢—±q
-     ypart = xpartminus(i)^2 / 20;%?˜¢—±q?????
-     vhat = y - ypart;%—^^???”V?“I—‘R
+         + 8 * cos(1.2*(k-1)) + sqrt(Q) * randn;%ÂÃ‘
+     ypart = xpartminus(i)^2 / 20;%?ËœÂ¢â€”Â±Å½q?????
+     vhat = y - ypart;%â€”^Â^???â€V?â€œIÅ½â€”â€˜R
      q(i) = (1 / sqrt(R) / sqrt(2*pi)) * exp(-vhat^2 / 2 / R); 
-     %?˜¢—±q“I—‘R‘¦‘Š—“x
+     %?ËœÂ¢â€”Â±Å½qâ€œIÅ½â€”â€˜Râ€˜Â¦â€˜Å Å½â€”â€œx
  end
  qsum = sum(q);
 for i = 1 : N
-    q(i) = q(i) / qsum;%???ˆê‰»
+    q(i) = q(i) / qsum;%???Ë†Ãªâ€°Â»
 end  
 
-  for i = 1 : N %ª˜??dVÑ?
+  for i = 1 : N %ÂÂªÂËœ??ÂdÂVÂÃ‘?
       u = rand;
       qtempsum = 0;
       for j = 1 : N
@@ -65,27 +65,27 @@ end
       end
   end
 xhatPart = mean(xpart);
-%Å@“Ió?˜Ä??‘¦?N˜¢—±q“I•½‹Ï?C?—¢??dVÑ?@Še˜¢—±q“I??‘Š“¯  
+%ÂÃ…Â@â€œIÂÃ³?ËœÃ„??â€˜Â¦?NËœÂ¢â€”Â±Å½qâ€œIâ€¢Â½â€¹Ã?ÂC?â€”Â¢??ÂdÂVÂÃ‘?Â@Å eËœÂ¢â€”Â±Å½qâ€œI??â€˜Å â€œÂ¯  
   
 XG(:,1) =  xpart;
 xmin = min(xpart);  
 xmax = max(xpart);    
-XG_next_1= zeros(N,D); %‰n‰»  
+XG_next_1= zeros(N,D); %Ââ€°Å½nâ€°Â»  
 XG_next_2 = zeros(N,D);  
 XG_next = zeros(N,D);  
   
 while G <= Gm   
 %G;   
-%%%%%%%%%%%%%%%%%%%%%%%%----??‘€ì----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%----??â€˜â‚¬ÂÃ¬----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     for i = 1:Np  
-        %?¶j,k,pO˜¢•s“¯“I”  
+        %?ÂÂ¶j,k,pÅ½OËœÂ¢â€¢sâ€œÂ¯â€œIÂâ€  
         a = 1;  
         b = Np;  
         dx = randperm(b-a+1) + a- 1;  
         j = dx(1);  
         k = dx(2);  
         p = dx(3);  
-        %—v•Û?—^i•s“¯  
+        %â€”vâ€¢Ã›?â€”^iâ€¢sâ€œÂ¯  
         if j == i  
             j  = dx(4);  
             else if k == i  
@@ -96,25 +96,25 @@ while G <= Gm
                 end  
          end  
           
-        %??Zq  
+        %??Å½ZÅ½q  
         suanzi = exp(1-Gm/(Gm + 1-G));  
         F = F0*2.^suanzi;  
-        %??“I˜¢‘Ì—ˆ©O˜¢Š÷•ƒ‘ã  
+        %??â€œIËœÂ¢â€˜ÃŒâ€”Ë†Å½Â©Å½OËœÂ¢ÂÂÅ Ã·â€¢Æ’â€˜Ã£  
          
         son = XG(p,:) + F*(XG(j,:) - XG(k,:));         
         for j = 1: D  
-            if son(1,j) >xmin  & son(1,j) < xmax %–h~??’´o?ŠE  
+            if son(1,j) >xmin  & son(1,j) < xmax %â€“hÅ½~??â€™Â´Âo?Å E  
                 XG_next_1(i,j) = son(1,j);  
             else  
                 XG_next_1(i,j) = (xmax - xmin)*rand(1) + xmin;  
             end  
         end  
     end  
-   %%%%%%%%%%%%%%%%%%%%%%%---Œğ³‘€ì----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+   %%%%%%%%%%%%%%%%%%%%%%%---Å’Ã°ÂÂ³â€˜â‚¬ÂÃ¬----%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
       
       
     for i = 1: Np  
-        randx = randperm(D);% [1,2,3,...D]“IŠ÷˜—ñ     
+        randx = randperm(D);% [1,2,3,...D]â€œIÂÂÅ Ã·ÂËœâ€”Ã±     
         for j = 1: D  
               
             if rand > CR & randx(1) ~= j % CR = 0.9   
@@ -125,7 +125,7 @@ while G <= Gm
         end  
     end  
       
-    %%%%%%%%%%%%%%%%%%----??‘€ì---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    %%%%%%%%%%%%%%%%%%----??â€˜â‚¬ÂÃ¬---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     for i = 1:Np  
         if f(XG_next_2(i,:)) < f(XG(i,:))  
               
@@ -135,18 +135,8 @@ while G <= Gm
         end  
     end  
       
-    %QoÅ¬?  
-%     for i = 1:Np  
-%         value(i) = f(XG_next(i,:));  
-%     end  
-%     [value_min,pos_min] = min(value);  
       
-    %‘æG‘ã’†“I–Ú?”Ÿ”“IÅ¬?  
-   % Gmin(G) = value_min;     
-    %•Û‘¶Å?“I˜¢‘Ì  
-   % best_x(G,:) = XG_next(pos_min,:);     
-      
-    XG = XG_next;   %XV   III
+    XG = XG_next;   %ÂXÂV   ÂIÂIÂI
     %trace(G,1) = G;  
     %trace(G,2) = value_min;  
     G = G + 1;  
@@ -157,8 +147,8 @@ end
   
   
   
-  
-
+ % è®¡ç®—ä¸çœŸå®æ•°æ®çš„error
+ 
 xArr = [xArr x];   
 yArr = [yArr y];  
 % xhatArr = [xhatArr xhat]; 
